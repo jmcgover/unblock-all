@@ -6,8 +6,7 @@ function clickAll(buttons) {
         buttons[i].click();
     }
 }
-async function unblock() {
-    var timeoutMs = 500;
+async function unblock(timeoutMs) {
     var prevScrollY;
     var scrollY = window.scrollY;
     do {
@@ -22,4 +21,7 @@ async function unblock() {
     if (actuallyBlock) {
         clickAll(unblockButtons);
     }
+}
+function main() {
+    unblock(500);
 }
