@@ -15,8 +15,9 @@ Once the script can no longer scroll, it finds all of the unblock buttons, by se
 1. Open the Javascript Console:
  * Windows/Linux: ``Ctrl + Shift + J``
  * OS X: ``Cmd + Option +J``
-1. Paste the contents of ``unblock.js`` into the Console window
-1. Run `main()` for a default scroll waiting period of 500ms or `unblock(timeoutInMilliseconds)` for a custom timeout.
+1. Paste the contents of ``unblock.js`` into the Console window. Press `Enter`.
+1. Type `main()`. Press `Enter`. 
+ * Alternatively, type `unblock(timeoutInMilliseconds)` for a custom timeout.
 1. Let it chooch
 1. When the dialog pops up, verify that the number of blocked accounts obtained makes sense
  * Click Ok/Yes to unblock every account
