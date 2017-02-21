@@ -6,15 +6,17 @@ function clickAll(buttons) {
         buttons[i].click();
     }
 }
-async function unblock(timeoutMs) {
+async function unblock(timeoutMs, maxScrolls) {
     var prevScrollY;
     var scrollY = window.scrollY;
+    var numScrolls = 0;
     do {
         window.scrollTo(0,document.body.scrollHeight);
+        numScrolls++;
         prevScrollY = scrollY;
         await sleep(timeoutMs);
         scrollY = window.scrollY;
-    } while((scrollY - prevScrollY) > 0);
+    } while((scrollY - prevScrollY) > 0 && (typeof maxScrolls === 'undefined' || numScrolls < maxScrolls));
 
     var unblockButtons = document.getElementsByClassName("blocked-text")
     var actuallyBlock = confirm("Do you want to unblock all " + unblockButtons.length + " accounts?");
