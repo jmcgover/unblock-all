@@ -11,6 +11,7 @@ Once the script can no longer scroll, it finds all of the unblock buttons, by se
 1. Open Google Chrome
 1. Navigate to https://twitter.com/settings/blocked
  * Sign in, if necessary
+1. Disable or whitelist any adblock or similar blocking extensions (just in case --- I have no idea if this is a problem)
 1. Open the Javascript Console:
  * Windows/Linux: ``Ctrl + Shift + J``
  * OS X: ``Cmd + Option +J``
