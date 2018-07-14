@@ -8,9 +8,10 @@ function clickAll(buttons) {
         // If somebody runs the script twice, we don't want to follow
         // the account they've just unblocked.  We'll mark each button
         // with an attribute to avoid clicking it twice.
-        if (typeof button.hasBeenClickedByUnblockAll == "undefined") {
+        var trackingAttribute = "hasBeenClickedByUnblockAll";
+        if (button.getAttribute(trackingAttribute) === null) {
             button.click();
-            button.hasBeenClickedByUnblockAll = true;
+            button.setAttribute(trackingAttribute, true);
         }
     }
 }
