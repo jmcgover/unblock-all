@@ -10,18 +10,18 @@ Once the script can no longer scroll, it finds all of the unblock buttons, by se
 # Usage
 1. Open Google Chrome
 1. Navigate to https://twitter.com/settings/blocked
- * Sign in, if necessary
+   * Sign in, if necessary
 1. Disable or whitelist any adblock or similar blocking extensions (just in case --- I have no idea if this is a problem)
 1. Open the Javascript Console:
- * Windows/Linux: ``Ctrl + Shift + J``
- * OS X: ``Cmd + Option +J``
+   * Windows/Linux: ``Ctrl + Shift + J``
+   * OS X: ``Cmd + Option +J``
 1. Paste the contents of ``unblock.js`` into the Console window. Press `Enter`.
 1. Type `main()`. Press `Enter`. 
- * Alternatively, type `unblock(timeoutInMilliseconds, maximumNumberOfScrolls)` for a custom timeout in milliseconds and max number of scrolls.
+   * Alternatively, type `unblock(timeoutInMilliseconds, maximumNumberOfScrolls)` for a custom timeout in milliseconds and max number of scrolls.
 1. Let it chooch
 1. When the dialog pops up, verify that the number of blocked accounts obtained makes sense
- * Click Ok/Yes to unblock every account
- * Click Cancel/No to do nothing
+   * Click Ok/Yes to unblock every account
+   * Click Cancel/No to do nothing
 1. Refresh the page to verify that accounts have been unblocked
 
 # Issues
