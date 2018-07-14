@@ -3,7 +3,15 @@ function sleep(ms) {
 }
 function clickAll(buttons) {
     for (i = 0; i < buttons.length; i++) {
-        buttons[i].click();
+        var button = buttons[i];
+
+        // If somebody runs the script twice, we don't want to follow
+        // the account they've just unblocked.  We'll mark each button
+        // with an attribute to avoid clicking it twice.
+        if (typeof button.hasBeenClickedByUnblockAll == "undefined") {
+            button.click();
+            button.hasBeenClickedByUnblockAll = true;
+        }
     }
 }
 async function unblock(timeoutMs, maxScrolls) {
