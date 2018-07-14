@@ -23,11 +23,3 @@ Once the script can no longer scroll, it finds all of the unblock buttons, by se
  * Click Ok/Yes to unblock every account
  * Click Cancel/No to do nothing
 1. Refresh the page to verify that accounts have been unblocked
-
-# Issues
-* If you **accidentally run the unblock script twice** (via either `main()` or `unblock(...)`) **without reloading**, you will follow everyone you just unblocked. 
-
- *If this occurs*:
-  * **DO NOT RELOAD THE PAGE**
-  * Run the script again
-  * Press Ok/Yes to "unblock" every account. The button clicked by the script remains the same, but will instead unfollow the accounts.
