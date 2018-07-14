@@ -6,8 +6,10 @@ function clickAll(buttons) {
         var button = buttons[i];
 
         // If somebody runs the script twice, we don't want to follow
-        // the account they've just unblocked.  We'll mark each button
-        // with an attribute to avoid clicking it twice.
+        // the account they've just unblocked by re-clicking the buttons.
+        //
+        // We'll mark each button with an attribute so we know what we've
+        // already clicked.
         var trackingAttribute = "hasBeenClickedByUnblockAll";
         if (button.getAttribute(trackingAttribute) === null) {
             button.click();
