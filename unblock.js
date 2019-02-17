@@ -18,7 +18,7 @@ async function unblock(timeoutMs, maxScrolls) {
         scrollY = window.scrollY;
     } while((scrollY - prevScrollY) > 0 && (typeof maxScrolls === 'undefined' || numScrolls < maxScrolls));
 
-    var unblockButtons = document.getElementsByClassName("blocked-text")
+    var unblockButtons = Array.from(document.querySelectorAll('span')).filter(el => el.textContent === 'Blocked');
     var actuallyBlock = confirm("Do you want to unblock all " + unblockButtons.length + " accounts?");
     if (actuallyBlock) {
         clickAll(unblockButtons);
