@@ -29,13 +29,19 @@ async function unblock(timeoutMs, maxScrolls) {
     }
 }
 async function unmute(timeoutMs, maxScrolls) {
-    await scrollAll(timeoutMs, maxScrolls);
-    // user must be on settings/privacy and safety/muted accounts page
-    let unmuteButtons = document.querySelectorAll('div[role="button"][aria-label^="Unmute "]');
-    var actuallyMute = confirm("Do you want to unmute all " + unmuteButtons.length + " accounts?");
-    if (actuallyMute) {
-        clickAll(unmuteButtons);
+    // TODO check that user is on settings/privacy and safety/muted accounts page
+    let actuallyMute = confirm("Do you want to unmute all accounts?");
+    if (!actuallyMute) {
+        return;
     }
+    
+    let muteButtons = document.querySelectorAll('div[role="button"][aria-label^="Unmute "]');
+    do {
+        muteButtons.forEach((b) => b.click());
+        window.scrollBy(0,2500);
+        await sleep(1000);
+        muteButtons = document.querySelectorAll('div[role="button"][aria-label^="Unmute "]');
+    } while (muteButtons.length);
 }
 function main() {
     unmute(500);
