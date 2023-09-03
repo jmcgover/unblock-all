@@ -6,7 +6,7 @@ function clickAll(buttons) {
         buttons[i].click();
     }
 }
-async function unblock(timeoutMs, maxScrolls) {
+async function scrollAll(timeoutMs, maxScrolls) {
     var prevScrollY;
     var scrollY = window.scrollY;
     var numScrolls = 0;
@@ -17,13 +17,26 @@ async function unblock(timeoutMs, maxScrolls) {
         await sleep(timeoutMs);
         scrollY = window.scrollY;
     } while((scrollY - prevScrollY) > 0 && (typeof maxScrolls === 'undefined' || numScrolls < maxScrolls));
-
-    var unblockButtons = document.getElementsByClassName("blocked-text")
+}
+async function unblock(timeoutMs, maxScrolls) {
+    await scrollAll(timeoutMs, maxScrolls);
+    // user must be on settings/privacy and safety/blocked accounts page
+    // let blockedContainer = document.querySelector('div[aria-label$="Blocked accounts"]');
+    let unblockButtons = document.querySelectorAll('div[aria-label="Blocked"]');
     var actuallyBlock = confirm("Do you want to unblock all " + unblockButtons.length + " accounts?");
     if (actuallyBlock) {
         clickAll(unblockButtons);
     }
 }
+async function unmute(timeoutMs, maxScrolls) {
+    await scrollAll(timeoutMs, maxScrolls);
+    // user must be on settings/privacy and safety/muted accounts page
+    let unmuteButtons = document.querySelectorAll('div[role="button"][aria-label^="Unmute "]');
+    var actuallyMute = confirm("Do you want to unmute all " + unmuteButtons.length + " accounts?");
+    if (actuallyMute) {
+        clickAll(unmuteButtons);
+    }
+}
 function main() {
-    unblock(500);
+    unmute(500);
 }
