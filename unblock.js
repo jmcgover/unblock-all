@@ -1,29 +1,31 @@
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-function clickAll(buttons) {
-    for (i = 0; i < buttons.length; i++) {
-        buttons[i].click();
+async function unblockOrUnmute(timeoutMs, maxIter, scrollHeight, isUnblock) {
+    // TODO check that user is on settings/privacy and safety/mute and block/blocked|muted accounts page
+    const actionMsg = isUnblock ? 'unblock' : 'unmute';
+    if (!confirm(`Do you want to ${actionMsg} all accounts?`)) {
+        return;
     }
-}
-async function unblock(timeoutMs, maxScrolls) {
-    var prevScrollY;
-    var scrollY = window.scrollY;
-    var numScrolls = 0;
-    do {
-        window.scrollTo(0,document.body.scrollHeight);
-        numScrolls++;
-        prevScrollY = scrollY;
-        await sleep(timeoutMs);
-        scrollY = window.scrollY;
-    } while((scrollY - prevScrollY) > 0 && (typeof maxScrolls === 'undefined' || numScrolls < maxScrolls));
 
-    var unblockButtons = document.getElementsByClassName("blocked-text")
-    var actuallyBlock = confirm("Do you want to unblock all " + unblockButtons.length + " accounts?");
-    if (actuallyBlock) {
-        clickAll(unblockButtons);
-    }
+    // TODO perf - query button container instead of document
+    //  buttonContainer = document.querySelector('div[aria-label$="Blocked accounts"]');
+    const btnSelector = isUnblock ? 
+        'div[aria-label="Blocked"]' :
+        'div[role="button"][aria-label^="Unmute "]';
+    let buttons = document.querySelectorAll(btnSelector);
+    let iterCount = 0;
+    do {
+        buttons.forEach((b) => {
+            const btnUser = b.previousElementSibling.querySelector('SPAN SPAN').innerText;
+            console.debug(`${actionMsg},iterCount="${iterCount}",btnUser="${btnUser}"`);
+            b.click();
+        });
+        window.scrollBy(0,scrollHeight);
+        await sleep(timeoutMs);
+        buttons = document.querySelectorAll(btnSelector);
+    } while (buttons.length && ++iterCount < maxIter);
 }
 function main() {
-    unblock(500);
+    unblockOrUnmute(1000, 300, 2500, true);
 }
