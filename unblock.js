@@ -27,5 +27,5 @@ async function unblockOrUnmute(timeoutMs, maxIter, scrollHeight, isUnblock) {
     } while (buttons.length && ++iterCount < maxIter);
 }
 function main() {
-    unblockOrUnmute(1000, 2, 100, true);
+    unblockOrUnmute(1000, 300, 2500, true);
 }
