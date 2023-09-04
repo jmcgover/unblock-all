@@ -19,7 +19,7 @@ async function unblockOrUnmute(timeoutMs, maxIter, scrollHeight, isUnblock) {
         buttons.forEach((b) => {
             const btnUser = b.previousElementSibling.querySelector('SPAN SPAN').innerText;
             console.debug(`${actionMsg},iterCount="${iterCount}",btnUser="${btnUser}"`);
-            //b.click();
+            b.click();
         });
         window.scrollBy(0,scrollHeight);
         await sleep(timeoutMs);
